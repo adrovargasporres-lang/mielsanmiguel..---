@@ -1,0 +1,139 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 36 50% 97%;
+    --foreground: 20 12% 14%;
+    --card: 36 50% 97%;
+    --card-foreground: 20 12% 14%;
+    --popover: 36 50% 97%;
+    --popover-foreground: 20 12% 14%;
+    --primary: 28 45% 64%;
+    --primary-foreground: 36 50% 97%;
+    --secondary: 28 30% 56%;
+    --secondary-foreground: 36 50% 97%;
+    --muted: 36 30% 92%;
+    --muted-foreground: 20 8% 45%;
+    --accent: 36 40% 95%;
+    --accent-foreground: 20 12% 14%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 28 25% 85%;
+    --input: 28 25% 85%;
+    --ring: 28 45% 64%;
+    --radius: 1rem;
+    --chart-1: 28 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --whatsapp: 142 70% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+import type { Metadata, Viewport } from "next"
+import { Inter, Playfair_Display } from "next/font/google"
+import "./globals.css"
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+})
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
+})
+
+export const metadata: Metadata = {
+  title: "San Miguel - Miel Artesanal de Guatemala",
+  description:
+    "Miel 100% pura y artesanal de Finca San Miguel, Quetzaltenango. Sin procesos industriales, directa de la colmena a tu mesa.",
+  keywords: [
+    "miel artesanal",
+    "miel pura",
+    "Guatemala",
+    "Quetzaltenango",
+    "San Miguel",
+    "miel natural",
+  ],
+  openGraph: {
+    title: "San Miguel - Miel Artesanal de Guatemala",
+    description:
+      "Miel 100% pura y artesanal de Finca San Miguel, Quetzaltenango.",
+    type: "website",
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: "#D4A574",
+  width: "device-width",
+  initialScale: 1,
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="es" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="font-sans antialiased">{children}</body>
+    </html>
+  )
+}
+
+import { Navbar } from "@/components/navbar"
+import { Hero } from "@/components/hero"
+import { Products } from "@/components/products"
+import { Process } from "@/components/process"
+import { About } from "@/components/about"
+import { Mission } from "@/components/mission"
+import { FAQ } from "@/components/faq"
+import { InstagramSection } from "@/components/instagram-section"
+import { Contact } from "@/components/contact"
+import { FinalCTA } from "@/components/final-cta"
+import { Footer } from "@/components/footer"
+import { WhatsAppFAB } from "@/components/whatsapp-fab"
+
+export default function Home() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <Hero />
+        <Products />
+        <Process />
+        <About />
+        <Mission />
+        <FAQ />
+        <InstagramSection />
+        <Contact />
+        <FinalCTA />
+      </main>
+      <Footer />
+      <WhatsAppFAB />
+    </>
+  )
+}
